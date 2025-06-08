@@ -108,8 +108,30 @@ def create_filters(
     :param hazardous: Whether the NEO of a matching `CloseApproach` is potentially hazardous.
     :return: A collection of filters for use with `query`.
     """
-    # TODO: Decide how you will represent your filters.
-    return ()
+    filtro = []
+    
+    if date:
+        filtro.append(DateFilter(operator.eq, date))
+    if start_date:
+        filtro.append(DateFilter(operator.ge, start_date))
+    if end_date:
+        filtro.append(DateFilter(operator.le, end_date))
+    if distance_min:
+        filtro.append(DistanceFilter(operator.ge, distance_min))
+    if distance_max:
+        filtro.append(DistanceFilter(operator.le, distance_max))
+    if velocity_min:
+        filtro.append(VelocityFilter(operator.ge, velocity_min))
+    if velocity_max:
+        filtro.append(VelocityFilter(operator.le, velocity_max))
+    if diameter_min:
+        filtro.append(DiameterFilter(operator.ge, diameter_min))
+    if diameter_max:
+        filtro.append(DiameterFilter(operator.le, diameter_max))
+    if hazardous is not None:
+        filtro.append(HazardousFilter(operator.eq, hazardous))
+
+    return filtro
 
 
 def limit(iterator, n=None):
@@ -122,4 +144,6 @@ def limit(iterator, n=None):
     :yield: The first (at most) `n` values from the iterator.
     """
     # TODO: Produce at most `n` values from the given iterator.
-    return iterator
+    if n == 0 or n is None:
+        return iterator
+    return [x for i, x in enumerate(iterator) if i<n] # FOR MYSELF: TO DOUBLE CHECK...MIGHT WORK..
