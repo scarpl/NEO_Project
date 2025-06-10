@@ -75,14 +75,6 @@ class DateFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
-        """Return approach.time converted to datetime.datetime object for the date filter.
-        
-        Args:
-            approach (CloseApproach): A CloseApproach object.
-        Returns:
-            [datetime.datetime]: Converted time to datetime object.
-            
-        """
         return approach.time.date()
 
 class DistanceFilter(AttributeFilter):
@@ -90,14 +82,6 @@ class DistanceFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
-        """Return distance of the CloseApproach objectfor the distance filter.
-        
-        Args:
-            approach (CloseApproach): A CloseApproach object.
-        Returns:
-            [float]: Returns the distance of a CloseApproach.
-            
-        """
         return approach.distance
     
 class VelocityFilter(AttributeFilter):
@@ -105,14 +89,6 @@ class VelocityFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
-        """Return approach.velocity for the velocity filter.
-        
-        Args:
-            approach (CloseApproach): A CloseApproach object.
-        Returns:
-            [float]: Returns the velocity of a CloseApproach.
-            
-        """
         return approach.velocity
     
 class DiameterFilter(AttributeFilter):
@@ -120,14 +96,6 @@ class DiameterFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
-        """Return the diameter of the neo assigned to the CloseApproach object for the diameter filter.
-        
-        Args:
-            approach (CloseApproach): A CloseApproach object.
-        Returns:
-            [float]: Returns the diameter of a NearEarthObject object.
-            
-        """
         return approach.neo.diameter
 
 class HazardousFilter(AttributeFilter):
@@ -135,14 +103,6 @@ class HazardousFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
-        """Return the hazardous attribute of the neo assigned to the CloseApproach object for the diameter filter.
-        
-        Args:
-            approach (CloseApproach): A CloseApproach object.
-        Returns:
-            [float]: Returns the hazardous attribute of a NearEarthObject object.
-            
-        """
         return approach.neo.hazardous
 
 def create_filters(

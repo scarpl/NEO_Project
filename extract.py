@@ -39,12 +39,11 @@ def load_neos(neo_csv_path):
                     diameter = line["diameter"],
                     hazardous = line["pha"],
                 )
-            except Exception as exception:
-                print(exception)
+            except Exception as e:
+                print(e)
             else:
                 neos.append(neo)
     return neos
-
 
 def load_approaches(cad_json_path):
     """Read close approach data from a JSON file.
