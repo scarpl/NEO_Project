@@ -67,13 +67,13 @@ class NearEarthObject:
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return (f"NearEarthObject(designation={self.designation!r}, name={self.name!r}, "
                 f"diameter={self.diameter:.3f}, hazardous={self.hazardous!r})")
-    
+
     def serialize(self):
         """Return a dict representation of self attributes.
-        
+
         Returns:
             [dict]: Keys associated with self attributes.
-            
+
         """
         return {
             "designation": self.designation,
@@ -109,20 +109,20 @@ class CloseApproach:
             assert isinstance(self.time, datetime.datetime), "Date must be a datetime object"
         self.distance = info.get("distance", float("nan"))
         self.velocity = info.get("velocity", float("nan"))
-        
+
         assert isinstance(self.distance, float), "Distance must be a float object"
         assert isinstance(self.velocity, float), "Velocity must be a float object"
 
         # Create an attribute for the referenced NEO, originally None.
         self.neo = info.get("neo")
-        
+
     @property
     def designation(self):
         """Get designation.
-        
+
         Returns:
             [str]: Returns self._designation
-            
+
         """
         return self._designation
 
@@ -155,10 +155,10 @@ class CloseApproach:
 
     def serialize(self):
         """Return a dict representation of self attributes.
-        
+
         Returns:
             [dict]: Keys associated with self attributes.
-            
+
         """
         return {
             "datetime_utc": datetime_to_str(self.time),

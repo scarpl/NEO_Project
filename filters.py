@@ -70,6 +70,8 @@ class AttributeFilter:
 
     def __repr__(self):
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
+
+
 class DateFilter(AttributeFilter):
     """Subclass of AttributeFilter to filter CloseApproach objects by date."""
 
@@ -77,20 +79,23 @@ class DateFilter(AttributeFilter):
     def get(cls, approach):
         return approach.time.date()
 
+
 class DistanceFilter(AttributeFilter):
     """Subclass of AttributeFilter to filter approach objects by distance."""
 
     @classmethod
     def get(cls, approach):
         return approach.distance
-    
+
+
 class VelocityFilter(AttributeFilter):
     """Subclass of AttributeFilter to filter approach objects by velocity."""
 
     @classmethod
     def get(cls, approach):
         return approach.velocity
-    
+
+
 class DiameterFilter(AttributeFilter):
     """Subclass of AttributeFilter to filter approach objects by diameter."""
 
@@ -98,12 +103,14 @@ class DiameterFilter(AttributeFilter):
     def get(cls, approach):
         return approach.neo.diameter
 
+
 class HazardousFilter(AttributeFilter):
     """Subclass to filter CloseApproach objects by if it's hazardous."""
 
     @classmethod
     def get(cls, approach):
         return approach.neo.hazardous
+
 
 def create_filters(
         date=None, start_date=None, end_date=None,
@@ -142,7 +149,7 @@ def create_filters(
     :return: A collection of filters for use with `query`.
     """
     filters = []
-    
+
     if date:
         filters.append(DateFilter(operator.eq, date))
     if start_date:
@@ -176,7 +183,7 @@ def limit(iterator, n=None):
     :param n: The maximum number of values to produce.
     :yield: The first (at most) `n` values from the iterator.
     """
-    # TODO: Produce at most `n` values from the given iterator.
+
     if n == 0 or n is None:
         return iterator
-    return [x for i, x in enumerate(iterator) if i<n] # FOR MYSELF: TO DOUBLE CHECK...MIGHT WORK..
+    return [x for i, x in enumerate(iterator) if i<n]
