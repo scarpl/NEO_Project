@@ -34,16 +34,17 @@ def load_neos(neo_csv_path):
             line["pha"] = False if line["pha"] in ["", "N"] else True
             try:
                 neo = NearEarthObject(
-                    designation = line["pdes"],
-                    name = line["name"],
-                    diameter = line["diameter"],
-                    hazardous = line["pha"],
+                    designation=line["pdes"],
+                    name=line["name"],
+                    diameter=line["diameter"],
+                    hazardous=line["pha"],
                 )
             except Exception as e:
                 print(e)
             else:
                 neos.append(neo)
     return neos
+
 
 def load_approaches(cad_json_path):
     """Read close approach data from a JSON file.
