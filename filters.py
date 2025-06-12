@@ -38,6 +38,7 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
+
     def __init__(self, op, value):
         """Construct a new `AttributeFilter` from an binary predicate and a reference value.
 
@@ -69,6 +70,7 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Comparison of filter attribute."""
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 
@@ -77,6 +79,7 @@ class DateFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
+        """Return distance of the CloseApproach object upon providing distance through its filter."""
         return approach.time.date()
 
 
@@ -85,6 +88,7 @@ class DistanceFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
+        """Return the distance of the neo assigned to the CloseApproach object upon applying its filter."""
         return approach.distance
 
 
@@ -93,6 +97,7 @@ class VelocityFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
+        """Return velocity of the neo assigned to the CloseApproach object upon applying its filter."""
         return approach.velocity
 
 
@@ -101,6 +106,7 @@ class DiameterFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
+        """Return diameter of the neo assigned to the CloseApproach object upon applying its filter."""
         return approach.neo.diameter
 
 
@@ -109,6 +115,7 @@ class HazardousFilter(AttributeFilter):
 
     @classmethod
     def get(cls, approach):
+        """Return hazardousness of the neo assigned to the CloseApproach object upon applying its filter."""
         return approach.neo.hazardous
 
 
@@ -183,7 +190,6 @@ def limit(iterator, n=None):
     :param n: The maximum number of values to produce.
     :yield: The first (at most) `n` values from the iterator.
     """
-
     if n == 0 or n is None:
         return iterator
-    return [x for i, x in enumerate(iterator) if i<n]
+    return [x for i, x in enumerate(iterator) if i < n]
